@@ -1,55 +1,84 @@
-# Discord-Bot-Webhook-Tester
-Sleek terminal tool to verify your Discord webhooks and bot tokens instantly.
+# Discord Webhook & Bot Tester
 
-**Made By Willyut**
-
----
-
-## Features
-
-- **Auto-install dependencies** – No manual `pip install` needed; the script installs required packages automatically.
-- **Smart input detection** – Paste a webhook URL or a bot token; the tool figures out which you want to test.
-- **Instant verification** – Sends a test message to confirm everything works.
-- **Beautiful terminal UI** – Colored output, clear success/error indicators, and an ASCII banner.
+A sleek terminal tool to quickly test Discord webhooks and bot tokens.  
+Self-contained — auto-installs dependencies on first run.
 
 ---
 
-## Requirements
+## ✨ Features
 
-- **Python 3.8+**
-- Packages (installed automatically on first run):
-  - `discord.py` (the modern Discord API wrapper)
-  - `requests`
+- **Auto‑install** — missing packages (`discord.py`, `requests`) are installed automatically
+- **Smart detection** — paste a webhook URL or a bot token; the tool figures it out
+- **Instant verification** — sends a test message to confirm everything works
+- **Clean terminal UI** — coloured output, ASCII banner, clear prompts
+- **No configuration files** — just run the script and go
+- **Made By Willyut**
 
 ---
 
-## Installation & Usage
+## 📦 Setup
 
-### 1. Download the script
-Clone or download `bot_tester.py` (or whatever you named it).
+**Requirements:** Python 3.7 or later.  
+Everything else is handled automatically.
 
-### 2. Run it
-```bash
-python bot_tester.py
-That's it The script will:
+    # Download the script (or clone the repo)
+    # Then run it:
+    python discord_tester.py
 
-Check if discord.py and requests are installed.
+On first run it will install `discord.py` and `requests` if they're not already present.
 
-Install them automatically if they're missing (you may see a brief "Installing..." message).
+---
 
-Clear the terminal and display the banner.
+## 🚀 Usage
 
-Prompt you to enter a Discord bot token or a webhook URL.
+1. Run the script.
+2. Paste your **Discord webhook URL** or **bot token** when prompted.
+3. If you pasted a bot token, you'll also be asked for a **channel ID** (the numeric ID where the bot should send a test message).
+4. The tool will attempt to send a verification message and report success or failure.
 
-How to test
-Webhook
-Paste a full webhook URL (e.g., https://discord.com/api/webhooks/123456789/abc...).
+### Example (Webhook)
 
-A Webhook verification successful! message will appear in the designated channel.
+    Enter a Discord bot token or webhook URL:
+    > https://discord.com/api/webhooks/123456/abc...
 
-Bot
-Paste your bot token (from the Discord Developer Portal).
+    Detected webhook URL. Sending verification message...
+    ✔ Webhook message sent successfully.
 
-Enter the channel ID where you want the test message to appear (enable Developer Mode in Discord to copy IDs).
+### Example (Bot)
 
-The bot will log in, send Bot verification successful! to that channel, and log out.
+    Enter a Discord bot token or webhook URL:
+    > MTAxMjM0NTY3ODkwMTIzNDU2Nzg5.MTIzND...
+
+    Assuming a bot token was entered.
+    Enter the channel ID to send the verification message to:
+    > 987654321098765432
+
+    Logging in and sending verification message...
+    ✔ Logged in as MyBot#1234 (ID: 123456789012345678)
+    ✔ Verification message sent to #general.
+
+---
+
+## 🧰 How It Works
+
+- **Webhook test** — sends a simple JSON payload to the Discord webhook endpoint using `requests`.
+- **Bot test** — logs into Discord with the token, finds the specified channel, sends a message, then logs out.
+- **Dependency handling** — tries multiple `pip` variants to install packages if they're missing, ensuring it works across different Python setups.
+
+---
+
+## ⚠️ Notes
+
+- Your bot must have **Send Messages** permission in the target channel.
+- Webhook URLs are one‑time secrets — be careful where you paste them.
+- The tool does not store or log any credentials.
+
+---
+
+## 📄 License
+
+Open source and provided as‑is for personal testing and learning.
+
+---
+
+Made by **Willyut**
